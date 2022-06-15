@@ -22,13 +22,14 @@ steps:
     command: 'restore'
     projects: '**/*.csproj'
 - task: DotNetCoreCLI@2
+  displayName: 'Publish the project - $(buildConfiguration)'
   inputs:
     command: 'build'
     projects: '**/*.csproj'
     publishWebProjects: false
-    arguments: '--no-restore --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
+    arguments: '--no-build --no-restore --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
     zipAfterPublish: true
-  displayName: 'Publish the project - $(buildConfiguration)'
+  
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
