@@ -26,7 +26,7 @@ steps:
     command: 'build'
     projects: '**/*.csproj'
     publishWebProjects: false
-    arguments: '--no-restore --configuration $(buildConfiguration) --output $(ArtifactStagingDirectory)/$(buildConfiguration)'
+    arguments: '--no-restore --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
     zipAfterPublish: true
   displayName: 'Publish the project - $(buildConfiguration)'
 
