@@ -18,7 +18,7 @@ namespace WebClient.Controllers
 
         public IActionResult Index()
         {
-            return View(identityOptions);
+            return View();
         }
 
         public IActionResult Privacy()
