@@ -79,7 +79,7 @@ builder.Services.AddRazorPages()
     //})
     .AddMicrosoftIdentityUI();
 
-HttpClient.DefaultProxy = new WebProxy(new Uri("http://localhost:8866"));
+//HttpClient.DefaultProxy = new WebProxy(new Uri("http://localhost:8866"));
 
 var app = builder.Build();
 
