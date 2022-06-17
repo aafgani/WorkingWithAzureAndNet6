@@ -9,10 +9,13 @@ using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System.Net;
 using System.Security.Claims;
+using WebClient.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var configuration = builder.Configuration;
+
+builder.Services.Configure<IdentityOptions>(configuration.GetSection("AzureAd"));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
