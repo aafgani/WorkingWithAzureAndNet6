@@ -4,10 +4,12 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
 trigger:
-- main
+- '*'
 
 variables:
   buildConfiguration: 'Release'
+  releaseBranchName: 'release'
+  mainBranchName: 'main'
 
 stages:
 - stage : 'Build'
@@ -51,6 +53,12 @@ stages:
 - stage: 'Deploy'
   displayName: 'Deploy the web application'
   dependsOn: Build
+  condition: |
+    and
+    (
+      succeeded(),
+      eq(variables['Build.SourceBranchName'], variables['mainBranchName'])
+    )
   jobs:
   - deployment: Deploy
     pool:
