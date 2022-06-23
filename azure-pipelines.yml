@@ -50,8 +50,8 @@ stages:
           displayName: 'Publish Artifact: drop'
           condition: succeeded()
           
-- stage: 'Deploy'
-  displayName: 'Deploy the web application'
+- stage: 'Dev'
+  displayName: 'Deploy to the dev environment'
   dependsOn: Build
   condition: |
     and
