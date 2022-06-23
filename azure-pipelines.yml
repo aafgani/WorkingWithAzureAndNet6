@@ -76,5 +76,5 @@ stages:
             displayName: 'Azure App Service Deploy: website'
             inputs:
               azureSubscription: 'Andrya_A354 Svc Con'
-              appName: '$(WebAppName)'
+              appName: '$(Dev.WebAppName)'
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
