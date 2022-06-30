@@ -77,7 +77,18 @@ stages:
             inputs:
               azureSubscription: 'Andrya_A354 Svc Con'
               appName: '$(Dev.WebAppName)'
-              package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
+              package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/$(WebClientProjectName).zip'
+          
+          - task: AzureFunctionApp@1
+            displayName: 'Azure Function Deploy'
+            inputs:
+              azureSubscription: 'Andrya_A354 Svc Con'
+              appType: functionAppLinux
+              appName: $(functionAppName)
+              package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/$(AzFunctionProjectName).zip'
+              runtimeStack: DOCKER|microsoft/azure-functions-dotnet:4
+              startUpCommand: 'func azure functionapp publish $(functionAppName) --no-bundler'
+
 
 - stage: 'Test'
   displayName: 'Deploy to the test environment'
