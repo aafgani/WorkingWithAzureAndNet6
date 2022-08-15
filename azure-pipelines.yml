@@ -42,8 +42,15 @@ stages:
           inputs:
             command: test
             projects: '**/*Test/*.csproj'
-            arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
-          
+            arguments: '--configuration $(buildConfiguration) --collect "Code coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura'
+            publishTestResults: true
+        
+        - task : PublishCodeCoverageResults@1
+          displayName: "Publish code coverage"
+          inputs:
+            codeCoverageTool: 'Cobertura'
+            summaryFileLocation: '$(Build.ArtifactStagingDirectory)/$(buildConfiguration)/$(Agent.TempDirectory)/**/coverage.cobertura.xml'
+
         - task: DotNetCoreCLI@2
           displayName: 'Publish the project - $(buildConfiguration)'
           inputs:
