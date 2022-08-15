@@ -40,9 +40,9 @@ stages:
         - task: DotNetCoreCLI@2
           displayName: 'Test the project - $(buildConfiguration)'
           inputs:
-            command: 'test'
-            projects: '**/*[Tt]ests/*.csproj'
-            arguments: '--no-restore --configuration $(buildConfiguration)'
+            command: test
+            projects: '**/*Tests/*.csproj'
+            arguments: '--configuration $(buildConfiguration)'
           
         - task: DotNetCoreCLI@2
           displayName: 'Publish the project - $(buildConfiguration)'
