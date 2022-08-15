@@ -41,8 +41,8 @@ stages:
           displayName: 'Test the project - $(buildConfiguration)'
           inputs:
             command: test
-            projects: '**/*Test/*.csproj'
-            arguments: '--configuration $(buildConfiguration) --collect "Code coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura'
+            projects: 'UnitTest'
+            arguments: '--configuration $(buildConfiguration) --collect "XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura'
             publishTestResults: true
         
         - task : PublishCodeCoverageResults@1
