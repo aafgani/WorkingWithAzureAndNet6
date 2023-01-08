@@ -86,6 +86,12 @@ stages:
           steps:
           - download: current
             artifact: drop
+          - task: PowerShell@2
+            displayName: Display template location
+            inputs:
+            targetType: 'inline'
+            script: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/$(WebClientProjectName).zip' 
+
           - task: AzureWebApp@1
             displayName: 'Azure App Service Deploy: website'
             inputs:
